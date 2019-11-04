@@ -1,0 +1,21 @@
+const pipe = () => {};
+const compose = () => {};
+const zip = () => {};
+const intersperse = () => {};
+const insert = () => {};
+const flatten = () => {};
+const flatMap = () => {};
+const includes = () => {};
+const compact = () => {};
+const arrayIntoObject = () => {};
+
+exports.pipe = pipe;
+exports.compose = compose;
+exports.zip = zip;
+exports.intersperse = intersperse;
+exports.insert = insert;
+exports.flatten = flatten;
+exports.flatMap = flatMap;
+exports.includes = includes;
+exports.compact = compact;
+exports.arrayIntoObject = arrayIntoObject;
