@@ -51,9 +51,23 @@ const flatMap = (mappingFunction, list) => flatten(list.map(mappingFunction));
 const includes = (item, list) =>
   list.reduce((isIncluded, value) => isIncluded || item === value, false);
 
-const compact = () => {};
+const compact = (list) =>
+  list.reduce((acc, value) => {
+    if (value) {
+      acc.push(value);
+    }
 
-const arrayIntoObject = () => {};
+    return acc;
+  }, []);
+
+const arrayIntoObject = (key, list) =>
+  list.reduce((acc, obj) => {
+    const value = obj[key];
+
+    acc[value] = obj;
+
+    return acc;
+  }, {});
 
 exports.pipe = pipe;
 exports.compose = compose;

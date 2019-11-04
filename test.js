@@ -119,6 +119,37 @@ test('includes tells if a list has a certain element', () => {
   expect(outputs).toEqual([true, false, false]);
 });
 
-test('compact', () => {});
+test('compact removes falsey values from a list', () => {
+  const output = compact([0, null, 1, undefined, 2, '', 3, false, 4, NaN]);
 
-test('arrayIntoObject', () => {});
+  expect(output).toEqual([1, 2, 3, 4]);
+});
+
+test('arrayIntoObject converts an array into an object, using the given key', () => {
+  const users = [
+    { username: 'JX01', status: 'online' },
+    { username: 'yazeedBee', status: 'online' }
+  ];
+
+  const outputs = [
+    arrayIntoObject('username', users),
+    arrayIntoObject('status', users)
+  ];
+
+  expect(outputs).toEqual([
+    {
+      JX01: {
+        username: 'JX01',
+        status: 'online'
+      },
+      yazeedBee: { username: 'yazeedBee', status: 'online' }
+    },
+    {
+      online: {
+        username: 'JX01',
+        status: 'online'
+      },
+      online: { username: 'yazeedBee', status: 'online' }
+    }
+  ]);
+});
