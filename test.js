@@ -127,7 +127,7 @@ test('compact removes falsey values from a list', () => {
 
 test('arrayIntoObject converts an array into an object, using the given key', () => {
   const users = [
-    { username: 'JX01', status: 'online' },
+    { username: 'JX01', status: 'offline' },
     { username: 'yazeedBee', status: 'online' }
   ];
 
@@ -140,14 +140,14 @@ test('arrayIntoObject converts an array into an object, using the given key', ()
     {
       JX01: {
         username: 'JX01',
-        status: 'online'
+        status: 'offline'
       },
       yazeedBee: { username: 'yazeedBee', status: 'online' }
     },
     {
-      online: {
+      offline: {
         username: 'JX01',
-        status: 'online'
+        status: 'offline'
       },
       online: { username: 'yazeedBee', status: 'online' }
     }
