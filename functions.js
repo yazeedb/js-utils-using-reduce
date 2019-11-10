@@ -94,8 +94,8 @@ const range = (from, to) =>
     return acc;
   }, []);
 
-const repeat = (item, length) =>
-  Array.from({ length: length }).reduce((acc) => {
+const repeat = (item, times) =>
+  Array.from({ length: times }).reduce((acc) => {
     acc.push(item);
 
     return acc;
