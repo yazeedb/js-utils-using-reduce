@@ -9,7 +9,8 @@ const {
   includes,
   compact,
   arrayIntoObject,
-  adjust
+  adjust,
+  fromPairs
 } = require('./functions');
 
 test('pipe combines functions from left-to-right', () => {
@@ -155,6 +156,7 @@ test('arrayIntoObject converts an array into an object, using the given key', ()
   ]);
 });
 
+// 1
 describe('adjust', () => {
   const double = (x) => x * 2;
 
@@ -169,4 +171,30 @@ describe('adjust', () => {
 
     expect(output).toEqual([1, 2, 3]);
   });
+});
+
+// 2
+test('fromPairs creates an object from a list of key-value pairs', () => {
+  const outputs = [
+    [['a', 1], ['b', 2], ['c', 3]],
+    [['a', 1], ['c', 2], ['c', 3]],
+    [['hello', 'world'], ['JS', 'rocks'], ['so does', 'Elm']]
+  ].map(fromPairs);
+
+  expect(outputs).toEqual([
+    {
+      a: 1,
+      b: 2,
+      c: 3
+    },
+    {
+      a: 1,
+      c: 3
+    },
+    {
+      hello: 'world',
+      JS: 'rocks',
+      'so does': 'Elm'
+    }
+  ]);
 });

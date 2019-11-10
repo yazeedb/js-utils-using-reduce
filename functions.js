@@ -78,6 +78,15 @@ const adjust = (index, fn, list) =>
     return acc;
   }, []);
 
+const fromPairs = (pairs) =>
+  pairs.reduce((acc, currentPair) => {
+    const [key, value] = currentPair;
+
+    acc[key] = value;
+
+    return acc;
+  }, {});
+
 exports.pipe = pipe;
 exports.compose = compose;
 exports.zip = zip;
@@ -89,3 +98,4 @@ exports.includes = includes;
 exports.compact = compact;
 exports.arrayIntoObject = arrayIntoObject;
 exports.adjust = adjust;
+exports.fromPairs = fromPairs;
