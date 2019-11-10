@@ -101,8 +101,8 @@ const repeat = (item, times) =>
     return acc;
   }, []);
 
-const times = (fn, length) =>
-  Array.from({ length: length }).reduce((acc, _, index) => {
+const times = (fn, numTimes) =>
+  Array.from({ length: numTimes }).reduce((acc, _, index) => {
     acc.push(fn(index));
 
     return acc;
