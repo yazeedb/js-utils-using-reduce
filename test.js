@@ -8,7 +8,8 @@ const {
   flatMap,
   includes,
   compact,
-  arrayIntoObject
+  arrayIntoObject,
+  adjust
 } = require('./functions');
 
 test('pipe combines functions from left-to-right', () => {
@@ -152,4 +153,20 @@ test('arrayIntoObject converts an array into an object, using the given key', ()
       online: { username: 'yazeedBee', status: 'online' }
     }
   ]);
+});
+
+describe('adjust', () => {
+  const double = (x) => x * 2;
+
+  it('applies a function to the value at the provided index', () => {
+    const output = adjust(1, double, [1, 2, 3]);
+
+    expect(output).toEqual([1, 4, 3]);
+  });
+
+  it('returns the original array if provided index is out of bounds', () => {
+    const output = adjust(4, double, [1, 2, 3]);
+
+    expect(output).toEqual([1, 2, 3]);
+  });
 });

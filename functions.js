@@ -69,6 +69,15 @@ const arrayIntoObject = (key, list) =>
     return acc;
   }, {});
 
+const adjust = (index, fn, list) =>
+  list.reduce((acc, value, sourceArrayIndex) => {
+    const valueToUse = sourceArrayIndex === index ? fn(value) : value;
+
+    acc.push(valueToUse);
+
+    return acc;
+  }, []);
+
 exports.pipe = pipe;
 exports.compose = compose;
 exports.zip = zip;
@@ -79,3 +88,4 @@ exports.flatMap = flatMap;
 exports.includes = includes;
 exports.compact = compact;
 exports.arrayIntoObject = arrayIntoObject;
+exports.adjust = adjust;
