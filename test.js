@@ -10,7 +10,8 @@ const {
   compact,
   arrayIntoObject,
   adjust,
-  fromPairs
+  fromPairs,
+  range
 } = require('./functions');
 
 test('pipe combines functions from left-to-right', () => {
@@ -196,5 +197,17 @@ test('fromPairs creates an object from a list of key-value pairs', () => {
       JS: 'rocks',
       'so does': 'Elm'
     }
+  ]);
+});
+
+// 3
+test('range returns a list of numbers from a given range', () => {
+  const outputs = [range(1, 3), range(1, 5), range(10, 15), range(100, 105)];
+
+  expect(outputs).toEqual([
+    [1, 2, 3],
+    [1, 2, 3, 4, 5],
+    [10, 11, 12, 13, 14, 15],
+    [100, 101, 102, 103, 104, 105]
   ]);
 });

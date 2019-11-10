@@ -87,6 +87,13 @@ const fromPairs = (pairs) =>
     return acc;
   }, {});
 
+const range = (from, to) =>
+  Array.from({ length: to - from + 1 }).reduce((acc, _, index) => {
+    acc.push(from + index);
+
+    return acc;
+  }, []);
+
 exports.pipe = pipe;
 exports.compose = compose;
 exports.zip = zip;
@@ -99,3 +106,4 @@ exports.compact = compact;
 exports.arrayIntoObject = arrayIntoObject;
 exports.adjust = adjust;
 exports.fromPairs = fromPairs;
+exports.range = range;
