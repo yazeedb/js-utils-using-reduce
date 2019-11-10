@@ -123,6 +123,50 @@ const deduplicate = (items) => {
   }, []);
 };
 
+const reverse = (list) =>
+  list.reduce((acc, _, index) => {
+    const reverseIndex = list.length - index - 1;
+    const reverseValue = list[reverseIndex];
+
+    acc.push(reverseValue);
+
+    return acc;
+  }, []);
+
+const insertAll = (index, subList, sourceList) => {
+  if (index > sourceList.length - 1) {
+    return sourceList.concat(subList);
+  }
+
+  return sourceList.reduce((acc, value, sourceArrayIndex) => {
+    if (index === sourceArrayIndex) {
+      acc.push(...subList, value);
+    } else {
+      acc.push(value);
+    }
+
+    return acc;
+  }, []);
+};
+
+const mergeAll = (objectList) =>
+  objectList.reduce((acc, obj) => {
+    Object.keys(obj).forEach((key) => {
+      acc[key] = obj[key];
+    });
+
+    return acc;
+  }, {});
+
+const xprod = (list1, list2) =>
+  list1.reduce((acc, list1Item) => {
+    list2.forEach((list2Item) => {
+      acc.push([list1Item, list2Item]);
+    });
+
+    return acc;
+  }, []);
+
 exports.pipe = pipe;
 exports.compose = compose;
 exports.zip = zip;
@@ -139,3 +183,7 @@ exports.range = range;
 exports.repeat = repeat;
 exports.times = times;
 exports.deduplicate = deduplicate;
+exports.reverse = reverse;
+exports.insertAll = insertAll;
+exports.mergeAll = mergeAll;
+exports.xprod = xprod;

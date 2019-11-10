@@ -14,7 +14,11 @@ const {
   range,
   repeat,
   times,
-  deduplicate
+  deduplicate,
+  reverse,
+  insertAll,
+  mergeAll,
+  xprod
 } = require('./functions');
 
 test('pipe combines functions from left-to-right', () => {
@@ -258,5 +262,78 @@ test('deduplicate will deduplicate items of a list', () => {
     [true, false],
     [undefined, null, new Date('01/01/2000')],
     [[1], { hello: 'world' }]
+  ]);
+});
+
+// 7
+test('reverse will reverse an array WITHOUT mutating it', () => {
+  const inputs = [
+    [1, 2, 3],
+    ['hello', 'world'],
+    [{ name: 'Will' }, { name: 'Jaime' }]
+  ];
+
+  const inputsDeepCopy = JSON.parse(JSON.stringify(inputs));
+
+  // This DOES NOT mutate the input array
+  const outputs = inputs.map(reverse);
+
+  // Make sure original inputs aren't mutated by the reversal
+  expect(inputs).toEqual(inputsDeepCopy);
+
+  // Regular assertion
+  expect(outputs).toEqual([
+    [3, 2, 1],
+    ['world', 'hello'],
+    [{ name: 'Jaime' }, { name: 'Will' }]
+  ]);
+});
+
+// 8
+describe('insertAll', () => {
+  it('inserts a sub-list into a list at the given index', () => {
+    const output = insertAll(1, [2, 3, 4], [1, 5]);
+
+    expect(output).toEqual([1, 2, 3, 4, 5]);
+  });
+
+  it('appends to the end of the list if index is too large', () => {
+    const output = insertAll(10, [2, 3, 4], [1, 5]);
+
+    expect(output).toEqual([1, 5, 2, 3, 4]);
+  });
+});
+
+// 9
+test('mergeAll merges a list of objects into one', () => {
+  const output = mergeAll([
+    { js: 'reduce' },
+    { elm: 'fold' },
+    { java: 'collect' },
+    { js: 'reduce' }
+  ]);
+
+  expect(output).toEqual({
+    js: 'reduce',
+    elm: 'fold',
+    java: 'collect'
+  });
+});
+
+// 10
+test('xprod, given a list, returns a new list of all possible pairs', () => {
+  const outputs = [
+    xprod(['Hello', 'World'], ['JavaScript', 'Reduce']),
+    xprod([1, 2, 3], [4, 5])
+  ];
+
+  expect(outputs).toEqual([
+    [
+      ['Hello', 'JavaScript'],
+      ['Hello', 'Reduce'],
+      ['World', 'JavaScript'],
+      ['World', 'Reduce']
+    ],
+    [[1, 4], [1, 5], [2, 4], [2, 5], [3, 4], [3, 5]]
   ]);
 });
