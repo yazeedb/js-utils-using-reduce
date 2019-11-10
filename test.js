@@ -164,7 +164,6 @@ test('arrayIntoObject converts an array into an object, using the given key', ()
   ]);
 });
 
-// 1
 describe('adjust', () => {
   const double = (x) => x * 2;
 
@@ -181,7 +180,6 @@ describe('adjust', () => {
   });
 });
 
-// 2
 test('fromPairs creates an object from a list of key-value pairs', () => {
   const outputs = [
     [['a', 1], ['b', 2], ['c', 3]],
@@ -207,7 +205,6 @@ test('fromPairs creates an object from a list of key-value pairs', () => {
   ]);
 });
 
-// 3
 test('range returns a list of numbers from a given range', () => {
   const outputs = [range(1, 3), range(1, 5), range(10, 15), range(100, 105)];
 
@@ -219,7 +216,6 @@ test('range returns a list of numbers from a given range', () => {
   ]);
 });
 
-// 4
 test('repeat returns a list of a given value N times', () => {
   const outputs = [
     repeat('JavaScript', 3),
@@ -239,14 +235,12 @@ test('repeat returns a list of a given value N times', () => {
   ]);
 });
 
-// 5
 test('times calls a given function N times', () => {
   const outputs = [times((x) => x * 2, 3), times(() => 'Sandwich', 2)];
 
   expect(outputs).toEqual([[0, 2, 4], ['Sandwich', 'Sandwich']]);
 });
 
-// 6
 test('deduplicate will deduplicate items of a list', () => {
   const outputs = [
     [1, 1, 2, 3],
@@ -265,7 +259,6 @@ test('deduplicate will deduplicate items of a list', () => {
   ]);
 });
 
-// 7
 test('reverse will reverse an array WITHOUT mutating it', () => {
   const inputs = [
     [1, 2, 3],
@@ -289,7 +282,6 @@ test('reverse will reverse an array WITHOUT mutating it', () => {
   ]);
 });
 
-// 8
 describe('insertAll', () => {
   it('inserts a sub-list into a list at the given index', () => {
     const output = insertAll(1, [2, 3, 4], [1, 5]);
@@ -304,7 +296,6 @@ describe('insertAll', () => {
   });
 });
 
-// 9
 test('mergeAll merges a list of objects into one', () => {
   const output = mergeAll([
     { js: 'reduce' },
@@ -320,7 +311,6 @@ test('mergeAll merges a list of objects into one', () => {
   });
 });
 
-// 10
 test('xprod, given a list, returns a new list of all possible pairs', () => {
   const outputs = [
     xprod(['Hello', 'World'], ['JavaScript', 'Reduce']),
