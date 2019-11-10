@@ -94,6 +94,13 @@ const range = (from, to) =>
     return acc;
   }, []);
 
+const repeat = (item, length) =>
+  Array.from({ length: length }).reduce((acc) => {
+    acc.push(item);
+
+    return acc;
+  }, []);
+
 exports.pipe = pipe;
 exports.compose = compose;
 exports.zip = zip;
@@ -107,3 +114,4 @@ exports.arrayIntoObject = arrayIntoObject;
 exports.adjust = adjust;
 exports.fromPairs = fromPairs;
 exports.range = range;
+exports.repeat = repeat;

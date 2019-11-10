@@ -11,7 +11,8 @@ const {
   arrayIntoObject,
   adjust,
   fromPairs,
-  range
+  range,
+  repeat
 } = require('./functions');
 
 test('pipe combines functions from left-to-right', () => {
@@ -209,5 +210,25 @@ test('range returns a list of numbers from a given range', () => {
     [1, 2, 3, 4, 5],
     [10, 11, 12, 13, 14, 15],
     [100, 101, 102, 103, 104, 105]
+  ]);
+});
+
+// 4
+test('repeat returns a list of a given value N times', () => {
+  const outputs = [
+    repeat('JavaScript', 3),
+    repeat({ favoriteLanguage: 'JavaScript' }, 2),
+    repeat(['JavaScript', 'Reduce'], 4)
+  ];
+
+  expect(outputs).toEqual([
+    ['JavaScript', 'JavaScript', 'JavaScript'],
+    [{ favoriteLanguage: 'JavaScript' }, { favoriteLanguage: 'JavaScript' }],
+    [
+      ['JavaScript', 'Reduce'],
+      ['JavaScript', 'Reduce'],
+      ['JavaScript', 'Reduce'],
+      ['JavaScript', 'Reduce']
+    ]
   ]);
 });
