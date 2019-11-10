@@ -12,7 +12,9 @@ const {
   adjust,
   fromPairs,
   range,
-  repeat
+  repeat,
+  times,
+  deduplicate
 } = require('./functions');
 
 test('pipe combines functions from left-to-right', () => {
@@ -230,5 +232,31 @@ test('repeat returns a list of a given value N times', () => {
       ['JavaScript', 'Reduce'],
       ['JavaScript', 'Reduce']
     ]
+  ]);
+});
+
+// 5
+test('times calls a given function N times', () => {
+  const outputs = [times((x) => x * 2, 3), times(() => 'Sandwich', 2)];
+
+  expect(outputs).toEqual([[0, 2, 4], ['Sandwich', 'Sandwich']]);
+});
+
+// 6
+test('deduplicate will deduplicate items of a list', () => {
+  const outputs = [
+    [1, 1, 2, 3],
+    ['Hello', 'Hello', 'World'],
+    [true, false, true, false, true],
+    [undefined, null, null, new Date('01/01/2000'), new Date('01/01/2000')],
+    [[1], [1], { hello: 'world' }, { hello: 'world' }]
+  ].map(deduplicate);
+
+  expect(outputs).toEqual([
+    [1, 2, 3],
+    ['Hello', 'World'],
+    [true, false],
+    [undefined, null, new Date('01/01/2000')],
+    [[1], { hello: 'world' }]
   ]);
 });

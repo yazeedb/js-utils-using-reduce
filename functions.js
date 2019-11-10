@@ -101,6 +101,28 @@ const repeat = (item, length) =>
     return acc;
   }, []);
 
+const times = (fn, length) =>
+  Array.from({ length: length }).reduce((acc, _, index) => {
+    acc.push(fn(index));
+
+    return acc;
+  }, []);
+
+const deduplicate = (items) => {
+  const cache = {};
+
+  return items.reduce((acc, item) => {
+    const alreadyIncluded = cache[item] === true;
+
+    if (!alreadyIncluded) {
+      cache[item] = true;
+      acc.push(item);
+    }
+
+    return acc;
+  }, []);
+};
+
 exports.pipe = pipe;
 exports.compose = compose;
 exports.zip = zip;
@@ -115,3 +137,5 @@ exports.adjust = adjust;
 exports.fromPairs = fromPairs;
 exports.range = range;
 exports.repeat = repeat;
+exports.times = times;
+exports.deduplicate = deduplicate;
